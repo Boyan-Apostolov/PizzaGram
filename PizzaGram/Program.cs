@@ -3,11 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using PizzaGram.Areas.Identity;
 using PizzaGram.Data;
 using PizzaGram.Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<PizzaGramContext>(options =>
+    options.UseSqlServer(connectionString));
 
 //Add database
 builder.Services.AddDbContext<PizzaGramDbContext>(options =>
@@ -16,7 +19,7 @@ builder.Services.AddDbContext<PizzaGramDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 //Add default identity
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<PizzaGramDbContext>();
 
 //Add services
