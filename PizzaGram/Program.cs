@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.EntityFrameworkCore;
 using PizzaGram.Areas.Identity;
 using PizzaGram.Data;
+using PizzaGram.Infrastructure;
 using PizzaGram.Data.Models;
 using Microsoft.AspNetCore.Identity;
 
@@ -53,5 +54,7 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+
+app.MigrateDatabase();
 
 app.Run();
