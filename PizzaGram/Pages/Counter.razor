@@ -4,15 +4,22 @@
 
 <h1>Counter</h1>
 
-<p role="status">Current count: @currentCount</p>
+@foreach (var item in list)
+{
+    <p>@item</p>
+}
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="IncrementCount">Get User</button>
 
 @code {
-    private int currentCount = 0;
+    private List<string> list = new();
+    private int index = 1;
 
     private void IncrementCount()
     {
-        currentCount++;
+        var test = $"Hello {index}";
+
+        list.Add(test);
+        index++;
     }
 }
